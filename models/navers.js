@@ -1,23 +1,51 @@
 const conexao = require('../infraestrutura/conexao')
-const naverTable = 'id, name, birthdate, admission_date, job_role'
 
 class Navers {
     
     adiciona(naver, res) {
+
         const sql = 'INSERT INTO Navers SET ?'
+        const realNaver = {...naver}
+        delete realNaver.projects
         
-        conexao.query(sql, naver, (erro, resultados) => {
+        const projectsId = naver.projects.split('-').map(Number)
+        
+        conexao.query(sql, realNaver, (erro, resultados) => {
             
             if(erro) {
                 res.status(400).json(erro)
             } else {
-                res.status(200).json(resultados)
+                if(naver.projects != 0) {
+                    res.status(200).json({...realNaver, projects: projectsId})
+                } else {
+                    res.status(200).json(realNaver)
+                }
             }
         })
+
+        if(naver.projects != 0) {
+        
+            const sqlSearch = `SELECT id FROM Navers WHERE name='${naver.name}'`
+                conexao.query(sqlSearch, (erro, id) => {
+                const idNaver = (id[0].id)
+                
+                const sqlLink = 'INSERT INTO LinkPN SET ?'
+                for(var i = 0; i < projectsId.length; i++) {      
+                    const insert = {id_naver: idNaver, id_project: projectsId[i]}
+                    console.log(insert)
+                    
+                    conexao.query(sqlLink, insert, (erro, resultado) => {
+                        if(erro) {
+                            res.status(400).json(erro)
+                        }
+                    })
+                }
+            })            
+        }
     }
     
     lista(res) {
-        const sql = `SELECT ${naverTable} FROM Navers`
+        const sql = `SELECT * FROM Navers`
 
         conexao.query(sql, (erro, resultados) => {
             
@@ -29,29 +57,8 @@ class Navers {
         })
     }
 
-    show(id, res) {
-        const sql = `SELECT ${naverTable} FROM Navers WHERE id=${id}`
-        
-        conexao.query(sql, (erro, resultados) => {
-            
-            const sql2 = `SELECT project_name FROM Navers WHERE id=${id}`
-            conexao.query(sql2, (erro, resultados1) => {
-                const projectName = (resultados1[0].project_name)
-                
-                const sqlProject = `SELECT * FROM Projects WHERE name='${projectName}'`
-                conexao.query(sqlProject, (erro, resultados2) => {
-                    
-                    const resultadoFinal = resultados.map((result) => {
-                        return {...result, projects: resultados2}
-                    })
-                    if(erro) {
-                        res.status(400).json(erro)
-                    } else {
-                        res.status(200).json(resultadoFinal)
-                    }
-                })
-            })
-        })
+    buscaPorId(id, res) {
+       
     }
 }
 

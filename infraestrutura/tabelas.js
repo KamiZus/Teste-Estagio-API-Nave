@@ -4,6 +4,7 @@ class Tabelas {
         
         this.criarNavers()
         this.criarProjects()
+        this.criarLinkProjectNaver()
     }
 
     criarNavers() {
@@ -12,7 +13,6 @@ class Tabelas {
             birthdate date NOT NULL, 
             admission_date date NOT NULL, 
             job_role varchar(20) NOT NULL,
-            project_name numeric, 
             PRIMARY KEY(id))`
 
         this.conexao.query(sql, erro => {
@@ -34,6 +34,19 @@ class Tabelas {
                 console.log(erro)
             } else {
                 console.log('Tabela Projects criada com sucesso')
+            }
+        })
+    }
+
+    criarLinkProjectNaver() {
+        const sql = `CREATE TABLE IF NOT EXISTS LinkPN (id_naver numeric, 
+            id_project numeric)`
+
+        this.conexao.query(sql, erro => {
+            if(erro) {
+                console.log(erro)
+            } else {
+                console.log('Tabela LinkPN criada com sucesso')
             }
         })
     }
