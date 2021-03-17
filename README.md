@@ -47,6 +47,8 @@ PROJETOS:
 
 Este projeto tem o objetivo de organizar e controlar atraves de um banco de dados N:N os desenvolvedores e projetos que estão ativos na empresa, permitindo sempre que necessário, ser capaz de conferir quais os desenvolvedores estão participando de cada projeto existente.
 
+Link para o Teste de lógica realizado no CodeSandBox: https://codesandbox.io/s/teste-estagio-template-forked-bupis
+
 # Instalação
 
 O banco de dados escolhido para ser utilizado nesta API foi o MySQL, sendo assim, para configuração verificar corretamente o arquivo `conexao.js` contido neste repertório para um link certeiro com o banco de dados a ser utilizado.
