@@ -81,3 +81,22 @@ Rotas definidas para a API:
     /Show/`id` <br>
     Através desta rota, utilizando o Id do Projeto cadastrado, poderá receber informações especificas deste projeto junto com as informações dos Navers participantes do mesmo.
 
+## Dificuldades e minhas Experiencias de realizar este Teste
+
+Devo dizer que nem tudo ficou 100% nesta API, mas mesmo assim dei do meu maximo para realiza-la.
+Em questão de dificuldades e problemas ao cria-la, houveram muitas, ja que nunca havia tido um devido contato real com Node.js e nem mesmo com uma API, sendo assim com a oportunidade, fui atras de tudo possivel para rapidamente aprender sobre e ser capaz de cria-lo. Sei que não está ao maximo que pode chegar, mas ainda assim estou Feliz com o que fui capaz de fazer sem nenhuma experiencia.
+
+Mas dentro de todas essas funções, minhas principais dificuldades, uma delas foi na de organizar corretamente uma arquitetura visual correta, onde dados serem definidos em seus devidos lugares para melhor apresentação.
+Algumas tags de funções do JavaScript que nunca havia tido contato ainda, foram um pouco complicadas de entender sua funcionalidade e como utiliza-la da maneira correta (sendo algumas: `Promises` e `Async/Await`)
+
+Existem algumas pontas soltas neste projeto a quais até o prazo não fui capaz de solucionar, que seriam:
+
+- Há um erro ocorrendo no POST no qual o console do VS Code define um erro em uma Promise, porem mesmo com essa apresentação de erro a requisição funciona normalmente.
+
+- Através do POST é possivel criar duplicações de informações na tabela, ja que não consegui definir corretamente para realizar um teste para verificar se as informações ja existem na tabela antes de inseri-la.
+
+- Ao realizar um cadastro de um Naver com uma id de projeto inexistente, o cadastro ainda sera realizado, porem não adicionando o link deste projeto inexistente, mas no caso de haver mais projetos e serem existentes eles iram ser linkados. Isto tambem acontece no caso contrario, no cadastro de um Projeto com a Id de Navers o qual participam.
+
+Dentre pontas soltas, todas estas seriam as que se destacam, mas sendo possivel existir mais devido minha inexperiencia.
+
+Finalizando este projeto, ainda continuo em meus estudos para resolver tudo e aprimorar a forma de realizar esse tipo de projeto.
