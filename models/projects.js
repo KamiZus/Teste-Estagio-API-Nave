@@ -2,63 +2,44 @@ const conexao = require('../infraestrutura/conexao')
 
 class Projects {
 
-    adiciona(project, res) {
+    async adiciona(project, res) {
 
-        const sql = 'INSERT INTO Projects SET ?'
-        const realProject = {...project}
-        delete realProject.navers
+        const { navers, ...projects } = project;
 
-        const naversId = project.navers.split('-').map(Number)
-
-        conexao.query(sql, realProject, (erro, resultados) => {
-
-            if(erro) {
-                res.status(400).json(erro)
-            } else {
-                if(project.navers != 0) {
-                    res.status(200).json({...realProject, navers: naversId})
-                } else {
-                    res.status(200).json(realProject)
-                }
-                
-            }
-            if(project.navers != 0) {
-        
-                const sqlSearch = `SELECT id FROM Projects WHERE name='${project.name}'`
-                    conexao.query(sqlSearch, (erro, id) => {
-                    const idProject = (id[0].id)
-                    
-                    const sqlLink = 'INSERT INTO LinkPN SET ?'
-                    for(var i = 0; i < naversId.length; i++) {      
-                        const insert = {id_naver: naversId[i], id_project: idProject}
-                        console.log(insert)
-                        
-                        conexao.query(sqlLink, insert, (erro, resultado) => {
-                            if(erro) {
-                                res.status(400).json(erro)
-                            }
-                        })
-                    }
-                })            
-            }
+        return new Promise((resolve, rejected) => {
+          conexao.query(`INSERT INTO Projects SET?`, projects, (erro, resultados) => {
+            if (erro) throw new Error(erro);
+            resolve(resultados);
+          })
         })
     }
 
-    lista(res) {
-        const sql = 'SELECT * FROM Projects'
-
-        conexao.query(sql, (erro, resultados) => {
-            
-            if(erro) {
-                res.status(400).json(erro)
-            } else {
-                res.status(200).json(resultados)
-            }
+    async lista(res) {
+        
+        return new Promise((resolve, rejected) => {
+            conexao.query('SELECT * FROM Projects', (erro, resultados) => {
+                if(erro) throw new Error(erro)
+                resolve(resultados)   
+            })         
         })
     }
 
-    buscaPorId(id, res) {
-        
+    async buscaPorId(id, res) {
+        return new Promise((resolve, rejected) => {
+            conexao.query(`SELECT * FROM Projects WHERE id = ?`, id, (erro, resultados) => {
+                if(erro) throw new Error(erro)
+                resolve(resultados)
+            }) 
+        })        
+    }
+
+    async verificaProjeto(id){
+        return new Promise((resolve, rejected) => {
+            conexao.query(`SELECT * FROM Projects WHERE id = ?`,id, (erro, resultados) => {
+                if (erro) throw new Error(erro);
+                resolve(resultados);
+            });
+        });
     }
 }
 
