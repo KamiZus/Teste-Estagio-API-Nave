@@ -61,23 +61,23 @@ Ao realizar a inicialização da API, ela automaticamente criara a base de todas
 `INFO: lembrar de seguir o modelo de requisições definidos na tag "Importante" descrito neste README`
 
 Rotas definidas para a API:
-- Navers
-    /Store
+- Navers<br>
+    /Store <br>
     Esta rota permite a utilização do POST para realizar cadastros dos Navers em sua tabela, permitindo tambem a linkagem do mesmo com seus projetos.
 
-    /Index
+    /Index <br>
     Nesta rota, atraves de um GET, receberá uma listagem de todos os Navers cadastrados na tabela com suas informações proprias da empresa.
 
-    /Show/`id`
+    /Show/`id` <br>
     Através desta rota, utilizando o Id do Naver cadastrado, poderá receber informações especificas deste Naver junto com as informações dos projetos o qual ele participa.
 
-- Projetos
-    /Store
+- Projetos <br>
+    /Store <br> 
     Esta rota permite a utilização do POST para realizar cadastros dos Projetos em sua tabela, permitindo tambem a linkagem do mesmo com seus Navers participantes.
 
-    /Index
+    /Index <br>
     Nesta rota, atraves de um GET, receberá uma listagem de todos os Projetos cadastrados na tabela com suas informações.
 
-    /Show/`id`
+    /Show/`id` <br>
     Através desta rota, utilizando o Id do Projeto cadastrado, poderá receber informações especificas deste projeto junto com as informações dos Navers participantes do mesmo.
 
