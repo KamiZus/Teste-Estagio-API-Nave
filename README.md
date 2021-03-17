@@ -31,7 +31,8 @@ NAVERS:
     "job_role": "Desenvolvedor",
     "projects": [5, 10]
 }
-```<br><br>
+```
+<br><br>
 PROJETOS:
 ```json
 {
