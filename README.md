@@ -1,7 +1,7 @@
 # Teste de Estágio Nave RS
 
 ## Descrição do Projeto
-<p align="center">API para controle de Funcionários e Projetos através de banco de dados</p>
+<p>API para controle de Funcionários e Projetos através de banco de dados</p>
 
 ### Escolhas de desenvolvimento:
 
@@ -23,7 +23,7 @@
 
 NAVERS:
 <br>
-``
+```json
 {
     "name": "Ciclano",
     "birthdate": "1995-05-28",
@@ -31,14 +31,14 @@ NAVERS:
     "job_role": "Desenvolvedor",
     "projects": [5, 10]
 }
-``<br><br>
+```<br><br>
 PROJETOS:
-``
+```json
 {
     "name": "Projeto Legal",
     "navers": [3, 5, 7, 9]
 }
-``
+```
 <br>
 
 
